@@ -223,7 +223,7 @@ class SnakeGame {
                 nextY -= 1;
         }
 
-        if (nextX == 0 || nextY == 0 || nextX == columns || nextY == rows) {
+        if (nextX == -1 || nextY == -1 || nextX == columns || nextY == rows) {
             this.gameOver();
             return;
         }
