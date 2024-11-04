@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <title>JS Snake</title>
+    <script src="SquareGrid.js/grid.js"></script>
+    <script src="snake.js"></script>
+    <style>
+      .column {
+          float: left;
+          padding: 10px;
+      }
+      .left {
+          width: 60%;
+      }
+      .right {
+          width: 40%;
+      }
+      .row {
+          width: 800px;
+          margin-left: auto;
+          margin-right: auto;
+      }
+      .row:after {
+          content: "";
+          display: table;
+          clear: both;
+      }
+      #game-over-label {
+          color: #ff0000;
+      }
+      #footer {
+          width: 800px;
+          padding-left: 10px;
+          margin-left: auto;
+          margin-right: auto;
+      }
+    </style>
+  </head>
+
+
+  <body>
+    <div id="container" class="row">
+      <div id="left-col" class="column left"></div>
+      <div id="right-col" class="column-right">
+        <p id="score-label"></p>
+        <p id="level-label"></p>
+        <p id="game-over-label"></p>
+        <button id="new-game-button">Start new game</button>
+      </div>
+    </div>
+    <div id="footer">
+      <p>&larr; move left | &rarr; move right | &uarr; rotate</p>
+      <p>[Space] pause/unpause</p>
+    </div>
+    
+    <script>
+      const game = new SnakeGame(document.querySelector('#left-col'),
+                              document.querySelector('#score-label'),
+                              document.querySelector('#game-over-label'),
+                              document.querySelector('#new-game-button'));
+    </script>
+
+  </body>
+  
+</html>
