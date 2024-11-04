@@ -18,7 +18,7 @@
           width: 40%;
       }
       .row {
-          width: 800px;
+          width: 720px;
           margin-left: auto;
           margin-right: auto;
       }
@@ -30,8 +30,11 @@
       #game-over-label {
           color: #ff0000;
       }
+      #new--game-button {
+          margin-top: 20px;
+      }
       #footer {
-          width: 800px;
+          width: 720px;
           padding-left: 10px;
           margin-left: auto;
           margin-right: auto;
@@ -44,15 +47,14 @@
     <div id="container" class="row">
       <div id="left-col" class="column left"></div>
       <div id="right-col" class="column-right">
-        <p id="score-label"></p>
-        <p id="level-label"></p>
+        <p id="score-label">Start a new game<br />to see game stats</p>
         <p id="game-over-label"></p>
         <button id="new-game-button">Start new game</button>
       </div>
     </div>
     <div id="footer">
-      <p>&larr; move left | &rarr; move right | &uarr; rotate</p>
-      <p>[Space] pause/unpause</p>
+      <p>Use arrow keys to move.</p>
+      <p>Use [Space] to pause/unpause the game.</p>
     </div>
     
     <script>
