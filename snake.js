@@ -38,7 +38,7 @@ class SnakeGame {
     pause = false;
 
     timer;
-    timerInterval = 150;
+    timerInterval = 100;
 
     // game colors
     snakeColor = "#5F9EA0";
@@ -236,7 +236,7 @@ class SnakeGame {
         this.selfCollision(nextX, nextY);
         snake.unshift(new Cell(nextX, nextY));
         snake.pop();
-        this.refresh();
+//        this.refresh();
 
     }
 
