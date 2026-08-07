@@ -38,7 +38,7 @@ class SnakeGame {
     pause = false;
 
     timer;
-    timerInterval = 100;
+    timerInterval = 90;
 
     // game colors
     snakeColor = "#5F9EA0";
@@ -77,6 +77,10 @@ class SnakeGame {
 
     keyPressed = (e) => {
         if (e.key === " ") {
+            e.preventDefault();
+            if (e.repeat) {
+                return;
+            }
             this.pause = !this.pause;
             if (this.pause) {
                 this.clearTimer();
@@ -85,12 +89,28 @@ class SnakeGame {
             }
         } else if (!this.pause) {
             if (e.key === "ArrowUp") {
+                e.preventDefault();
+                if (e.repeat) {
+                    return;
+                }
                 this.up();
             } else if (e.key === "ArrowLeft") {
+                e.preventDefault();
+                if (e.repeat) {
+                    return;
+                }
                 this.left();
             } else if (e.key === "ArrowRight") {
+                e.preventDefault();
+                if (e.repeat) {
+                    return;
+                }
                 this.right();
             } else if (e.key === "ArrowDown") {
+                e.preventDefault();
+                if (e.repeat) {
+                    return;
+                }
                 this.down();
             }
         }
@@ -182,28 +202,28 @@ class SnakeGame {
     right = () => {
         if (this.direction != 2) { // can't turn 180 degrees
             this.direction = 0;
-//            this.move();
+            this.move();
         }
     }
 
     down = () => {
         if (this.direction != 3) { // can't turn 180 degrees
             this.direction = 1;
-//            this.move();
+            this.move();
         }
     }
 
     left = () => {
         if (this.direction != 0) { // can't turn 180 degrees
             this.direction = 2;
-//            this.move();
+            this.move();
         }
     }
 
     up = () => {
         if (this.direction != 1) { // can't turn 180 degrees
             this.direction = 3;
-//            this.move();
+            this.move();
         }
     }
 
@@ -280,7 +300,7 @@ class SnakeGame {
         collision = snake.findIndex(({ x: xx, y: yy }) => xx == x && yy == y);
         if (collision != -1) {
             snake.splice(collision);
-            this.scoreCounter = Math.max(this.scoreCounter - 1000, 0);
+            this.scoreCounter = Math.max(this.scoreCounter - 500, 0);
         }
     }
 
