@@ -25,9 +25,9 @@ class Cell {
 
 class SnakeGame {
     // display options
-    rows = 20;
-    columns = 20;
-    squareSize = 20;
+    rows = 25;
+    columns = 25;
+    squareSize = 16;
 
     // game variables
     scoreCounter = 0;
@@ -161,9 +161,11 @@ class SnakeGame {
         let x = 0, y = 0;
         while (!success) {
             // don't spawn the fruit in the corners
-            x = this.getRandomInt(1, columns);
-            y = this.getRandomInt(1, rows);
-            if (this.withinSnake(x, y)) continue;
+            x = this.getRandomInt(0, columns);
+            y = this.getRandomInt(0, rows);
+            const inCorner = (x == 0 || x == columns - 1) &&
+                             (y == 0 || y == rows - 1);
+            if (inCorner || this.withinSnake(x, y)) continue;
             success = true;
         }
         this.fruit = new Cell(x, y);
@@ -180,28 +182,28 @@ class SnakeGame {
     right = () => {
         if (this.direction != 2) { // can't turn 180 degrees
             this.direction = 0;
-            this.move();
+//            this.move();
         }
     }
 
     down = () => {
         if (this.direction != 3) { // can't turn 180 degrees
             this.direction = 1;
-            this.move();
+//            this.move();
         }
     }
 
     left = () => {
         if (this.direction != 0) { // can't turn 180 degrees
             this.direction = 2;
-            this.move();
+//            this.move();
         }
     }
 
     up = () => {
         if (this.direction != 1) { // can't turn 180 degrees
             this.direction = 3;
-            this.move();
+//            this.move();
         }
     }
 
@@ -228,14 +230,17 @@ class SnakeGame {
             return;
         }
 
-        if (nextX == fruit.getX() && nextY == fruit.getY()) {
+        const ateFruit = nextX == fruit.getX() && nextY == fruit.getY();
+        if (ateFruit) {
             this.grow();
             this.scoreCounter += 100;
-            this.createFruit();
         }
         this.selfCollision(nextX, nextY);
         snake.unshift(new Cell(nextX, nextY));
         snake.pop();
+        if (ateFruit) {
+            this.createFruit();
+        }
 //        this.refresh();
 
     }
