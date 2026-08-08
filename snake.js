@@ -296,8 +296,9 @@ class SnakeGame {
     selfCollision = (x, y) => {
         const { snake } = this;
         if (x < 0 || y < 0) return;
-        let collision = -1;
-        collision = snake.findIndex(({ x: xx, y: yy }) => xx == x && yy == y);
+        const departingTailIndex = snake.length - 1;
+        const collision = snake.findIndex(({ x: xx, y: yy }, index) =>
+            index < departingTailIndex && xx == x && yy == y);
         if (collision != -1) {
             snake.splice(collision);
             this.scoreCounter = Math.max(this.scoreCounter - 500, 0);
