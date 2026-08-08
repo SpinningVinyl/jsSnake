@@ -39,6 +39,7 @@ class SnakeGame {
 
     timer;
     timerInterval = 90;
+    penaltyPerCell = 50;
 
     // game colors
     snakeColor = "#5F9EA0";
@@ -135,9 +136,9 @@ class SnakeGame {
     }
 
     tick = () => {
-        this.updateStats();
         this.move();
         this.refresh();
+        this.updateStats();
     }
 
     attachTimer = (millis) => {
@@ -300,8 +301,8 @@ class SnakeGame {
         const collision = snake.findIndex(({ x: xx, y: yy }, index) =>
             index < departingTailIndex && xx == x && yy == y);
         if (collision != -1) {
-            snake.splice(collision);
-            this.scoreCounter = Math.max(this.scoreCounter - 500, 0);
+            const discardedCells = snake.splice(collision).length;
+            this.scoreCounter = Math.max(this.scoreCounter - this.penaltyPerCell * discardedCells, 0);
         }
     }
 
